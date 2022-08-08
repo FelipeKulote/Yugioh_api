@@ -70,12 +70,3 @@ module.exports = {
   createCard,
   updateCard,
 };
-
-
-// createCard({
-//       name: "testname",
-//       atk: "testatk",
-//       def: "testdef",
-//       type: "testtype",
-//     });
-// console.log(cards);
