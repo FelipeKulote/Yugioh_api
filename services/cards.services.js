@@ -1,72 +1,55 @@
 const cards = require("../mocks/cards");
+const Card = require("../database/models/schemas");
 const cardEntity = require("../entities/cards.entities");
 
-function showCards() {
-  return cards;
+async function findAllCards() {
+  return await Card.find;
 }
 
-function searchCards(id) {
-  let cardId;
-  cards.map((card) => {
-    if (card.id === id) {
-      cardId = card;
-    }
-  });
-  if (!cardId) {
+async function findCardById(id) {
+  const cardFinded = await Card.findOne({ id: id });
+  if (!cardFinded) {
     throw new Error("Insira um valor válido para o id");
   }
-  return cardId;
+  return cardFinded;
 }
 
-function deleteCard(id) {
-  let cardId;
-  cards.map((card) => {
-    if (card.id === id) {
-      cardId = card;
-    }
-  });
-  if (!cardId) {
-    throw new Error("Insira um valor válido para o id");
-  }
-  cards.splice(cards.indexOf(cardId), 1);
-  return cards;
-}
-
-function createCard(card) {
+async function createCard(card) {
   const newCard = new cardEntity(card);
   newCard.validate();
-  const cardCreated = { ...newCard };
-  cards.push(cardCreated);
-  return cards;
+  const newCardValidated = { ...newCard.getCard() };
+
+  const cardCreated = await Card.create(newCardValidated);
+  return cardCreated;
 }
 
-function updateCard(id, object) {
-  let update;
-  let location;
-  cards.map((card) => {
-    if (card.id === id) {
-      update = card;
-      location = cards.indexOf(card);
-    }
-  });
-  if (!update) {
-    throw new Error("Não há nenhum card com este id");
+async function updateCard(card) {
+  const updateCard = new cardEntity(card);
+  updateCard.validate();
+
+  const updatedCard = { ...updateCard.getCard() };
+
+  const cardModified = await Card.findOneAndUpdate(
+    { id: card.id },
+    updatedCard,
+    { new: true }
+  );
+
+  return cardModified;
+}
+
+async function deleteCard(id) {
+  const cardDelete = await Card.findOneAndDelete({ id: id })
+  if (!id.cardYugi) {
+    throw new Error("Insira um id válido para poder deletar um card");
   }
-
-  update.name = object.name === undefined ? update.name : object.name;
-  update.atk = object.atk === undefined ? update.atk : object.atk;
-  update.def = object.def === undefined ? update.def : object.def;
-  update.type = object.type === undefined ? update.type : object.type;
-
-  cards.splice(location, 1, update);
-  console.log("A lista de cards foi atualizada");
-  return cards;
+  return cardDelete;
 }
 
 module.exports = {
-  showCards,
-  searchCards,
-  deleteCard,
+  findAllCards,
+  findCardById,
   createCard,
   updateCard,
+  deleteCard,  
 };

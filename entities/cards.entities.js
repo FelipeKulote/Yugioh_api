@@ -1,25 +1,12 @@
-function generateId() {
-  const cards = require("../mocks/cards");
-  let n = 1;
-  loop: while (true) {
-    for (let i of cards) {
-      if (i.id === n) {
-        n++;
-        continue loop;
-      }
-    }
-    break;
-  }
-  return n;
-}
+const crypto = require("node:crypto");
 
 class cardEntity {
-  constructor(card) {
-    this.id = generateId();
-    this.name = card.name;
-    this.atk = card.atk;
-    this.def = card.def;
-    this.type = card.type;
+  constructor(cardYugi) {
+    this.id = cardYugi.id ?? crypto.randomUUID();
+    this.name = cardYugi.name;
+    this.atk = cardYugi.atk;
+    this.def = cardYugi.def;
+    this.type = cardYugi.type;
   }
 
   validate() {
