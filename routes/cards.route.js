@@ -1,12 +1,10 @@
 const router = require("express").Router();
 const controllerTermos = require("../controllers/cards.controller");
 
-app.use(cors());
-router.get("/", controllerTermos.showController);
-router.get("/:id", controllerTermos.searchController);
-router.post("/post", controllerTermos.createController);
-router.put("/put/:id", controllerTermos.putController);
-router.delete("/delete/:id", controllerTermos.deleteController);
-
+router.get("/", controllerTermos.showCards);
+router.get("/:id", controllerTermos.searchCard);
+router.post("/post", controllerTermos.createCard);
+router.put("/put/:id", controllerTermos.putCard);
+router.delete("/delete/:id", controllerTermos.deleteCard);
 
 module.exports = router;
