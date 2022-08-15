@@ -10,7 +10,7 @@ app.use(express.json());
 
 mongoConnect();
 
-app.use("/yugioh", cardsRoutes);
+app.use("/cards", cardsRoutes);
 
 app.listen(3000, () => {
   console.log("http://localhost:3000");
