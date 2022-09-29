@@ -1,7 +1,7 @@
 const { connect } = require("mongoose");
 
 function mongoConnect() {
-  connect("mongodb://localhost:27017/"
+  connect(process.env.MONGO_URL ?? "mongodb://localhost:27017/"
   , {
     useNewUrlParser: true,
     useUnifiedTopology: true,
