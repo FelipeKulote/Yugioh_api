@@ -28,7 +28,154 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#components/schemas/card"
+                    "$ref": "#/components/schemas/card"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{id}": {
+      "get": {
+        "summary": "Retorna um único card de acordo com o ID",
+        "tags": ["Cards"],
+        "parameters": [{
+          
+            "name": "id",
+            "in": "path",
+            "description": "ID do card que está sendo requisitado",
+            "required": true
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Não encontrado"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/card"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/create": {
+      "post": {
+        "summary": "Retorna o card que foi criado",
+        "tags": ["Cards"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/card"
+              },
+              "examples": {
+                "card": {
+                  "value": {
+                    "name": "Dragão branco de olhos azuis",
+                    "atk": 3000,
+                    "def": 2500,
+                    "type": "Dragão"
+                  }
+                }
+              },
+              "responses": {
+                "400": {
+                  "description": "Bad request"
+                },
+                "201": {
+                  "description": "Anime Created",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/card"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/update": {
+      "put": {
+        "summary": "Retorna o card editado",
+        "tags": ["Cards"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/card"
+              },
+              "examples": {
+                "card": {
+                  "value": {
+                    "id": "70d12b90-4005-11ed-b878-0242ac120002",
+                    "name": "Dragão branco de olhos azuis",
+                    "atk": 3000,
+                    "def": 2500,
+                    "type": "Dragão"
+                  }
+                }
+              },
+              "responses": {
+                "400": {
+                  "description": "Bad request"
+                },
+                "200": {
+                  "description": "Card editado",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/card"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/delete/{id}": {
+      "delete": {
+        "summary": "Retorna o card deletado de acordo com o ID",
+        "tags": ["Cards"],
+        "parameters": [{
+          
+            "name": "id",
+            "in": "path",
+            "description": "ID do card que está sendo deletado",
+            "required": true
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Não encontrado"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/card"
                   }
                 }
               }
