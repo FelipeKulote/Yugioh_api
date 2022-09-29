@@ -3,8 +3,8 @@ const controllerTermos = require("../controllers/cards.controller");
 
 router.get("/", controllerTermos.showCards);
 router.get("/:id", controllerTermos.searchCard);
-router.post("/post", controllerTermos.createCard);
-router.put("/put/:id", controllerTermos.putCard);
+router.post("/create", controllerTermos.createCard);
+router.put("/update/:id", controllerTermos.putCard);
 router.delete("/delete/:id", controllerTermos.deleteCard);
 
 module.exports = router;

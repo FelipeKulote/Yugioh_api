@@ -1,0 +1,55 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Yugioh API",
+    "version": "1.0.0",
+    "description": "Uma Api com cartas de Yugioh"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/cards",
+      "description": "DEV"
+    },
+    {
+      "url": "",
+      "description": "PROD"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Retorna todos os cards do repositório",
+        "tags": ["Cards"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#components/schemas/card"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "card": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "atk": { "type": "number" },
+          "def": { "type": "number" },
+          "type": { "type": "string" }
+        }
+      }
+    }
+  }
+}
