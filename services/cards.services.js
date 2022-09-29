@@ -3,7 +3,7 @@ const Card = require("../database/models/schemas");
 const cardEntity = require("../entities/cards.entities");
 
 async function findAllCards() {
-  return await Card.find;
+  return await Card.find();
 }
 
 async function findCardById(id) {
