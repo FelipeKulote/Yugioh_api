@@ -110,7 +110,7 @@
         }
       }
     },
-    "/update": {
+    "/update/{id}": {
       "put": {
         "summary": "Retorna o card editado",
         "tags": ["Cards"],
