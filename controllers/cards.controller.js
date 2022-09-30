@@ -42,7 +42,7 @@ async function putCard(req, res) {
 
 async function deleteCard (req, res) {
   const id = req.params.id;
-  const cardDeleted = await cardsService.deleteCard
+  const cardDeleted = await cardsService.deleteCard(id)
   if (cardDeleted) {
     res.status(200).send(cardDeleted);
   } else {
