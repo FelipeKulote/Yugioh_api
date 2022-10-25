@@ -33,7 +33,7 @@ async function createCard(req, res) {
 async function putCard(req, res) {
   try {
     const card = req.body;
-    const cardUpdated = await cardsService.putCard(card);
+    const cardUpdated = await cardsService.updateCard(card);
     res.status(200).send(cardUpdated);
   } catch (err) {
     res.status(400).send({ message: err.message });
