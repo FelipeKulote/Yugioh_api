@@ -11,7 +11,7 @@
       "description": "DEV"
     },
     {
-      "url": "",
+      "url": "https://cards-yugioh-api.herokuapp.com/cards",
       "description": "PROD"
     }
   ],
