@@ -40,7 +40,7 @@ async function updateCard(card) {
 
 async function deleteCard(id) {
   const cardDelete = await Card.findOneAndDelete({ id: id })
-  if (!id.cardYugi) {
+  if (!id) {
     throw new Error("Insira um id válido para poder deletar um card");
   }
   return cardDelete;
